@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kz.kuz.webbrowser">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FragmentApplication">
+        <activity
+            android:name="kz.kuz.webbrowser.MainActivity"
+            android:label="@string/main_title"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="kz.kuz.webbrowser.UrlActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <!--
+        атрибут configChanges говорит Android, что активность должна сама обрабатывать изменения
+        конфигурации, это подходящее решение для WebView и VideoView, для удержания данных при
+        перезагрузках
+        у этих виджетов слишком много данных, чтобы сохраняться в onSaveInstanceState
+        удержание фрагмента также не сработает, потому что эти виджеты являются частью иерархии
+        фрагмента, а потому будут уничтожены и загружены заново
+        однако данным способом для всех активностей пользоваться нельзя по двум причинам
+        во-первых, квалификаторы ресурсов перестают работать автоматически и придётся перегружать
+        представление вручную
+        во-вторых, переопределение Activity.onSavedInstanceState() для сохранения временных
+        состояний интерфейса всё равно необходимо, потому что возможность уничтожения и повторного
+        создания при нехватки памяти всё равно остаётся
+        -->
+    </application>
+
+</manifest>
